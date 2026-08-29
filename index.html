@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>قائمة أسعار الشحن المعتمدة - مركز الراشد</title>
+    <title>مركز الراشد للشحن الإلكتروني</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Google Fonts Cairo -->
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;800;900;1000&display=swap" rel="stylesheet">
     <script>
         tailwind.config = {
             theme: {
@@ -24,357 +24,336 @@
     <style>
         body {
             font-family: 'Cairo', sans-serif;
-            background-color: #090d16;
+            background-color: #030712;
             color: #ffffff;
             user-select: none;
             -webkit-user-select: none;
         }
-        /* Custom smooth scroll */
-        html {
-            scroll-behavior: smooth;
+        .view-section {
+            transition: opacity 0.25s ease-in-out, transform 0.25s ease-in-out;
         }
-        .no-scrollbar::-webkit-scrollbar {
-            display: none;
-        }
-        .no-scrollbar {
-            -ms-overflow-style: none;
-            scrollbar-width: none;
+        .hidden-view {
+            display: none !important;
+            opacity: 0;
+            transform: scale(0.98);
         }
     </style>
 </head>
-<body class="min-h-screen pb-12 px-3 sm:px-6">
+<body class="min-h-screen flex flex-col justify-between p-3 sm:p-6 bg-slate-950">
 
-    <!-- Header Section -->
-    <header class="sticky top-0 z-50 bg-slate-950/95 backdrop-blur-md pt-3 pb-2 border-b border-slate-800 shadow-2xl">
-        <div class="max-w-md mx-auto text-center space-y-1">
-            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-400 font-bold text-xs">
-                <i class="fa-solid fa-bolt text-amber-400 animate-bounce"></i>
-                <span>أسعار الشحن الفوري بالمحل</span>
-            </div>
-            <h1 class="text-2xl font-black text-transparent bg-clip-text bg-gradient-to-r from-sky-400 via-amber-300 to-pink-500">
-                مركز الراشد للشحن الإلكتروني
-            </h1>
+    <!-- Header -->
+    <header class="w-full max-w-md mx-auto text-center py-2 sticky top-0 z-40 bg-slate-950/90 backdrop-blur-md border-b border-slate-900">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-400 font-bold text-xs mb-1">
+            <i class="fa-solid fa-bolt animate-pulse"></i>
+            <span>مركز الراشد لشحن الخدمات والألعاب</span>
         </div>
-
-        <!-- Sticky Quick Jump Buttons -->
-        <div class="max-w-md mx-auto mt-3 overflow-x-auto no-scrollbar flex gap-2 px-1 pb-1">
-            <a href="#roblox" class="px-3 py-1.5 rounded-xl bg-red-500/20 border border-red-500/40 text-red-300 text-xs font-black whitespace-nowrap flex items-center gap-1.5 active:scale-95 transition">
-                <i class="fa-solid fa-[#e52521] fa-cubes"></i> روبلوكس
-            </a>
-            <a href="#pubg" class="px-3 py-1.5 rounded-xl bg-amber-500/20 border border-amber-500/40 text-amber-300 text-xs font-black whitespace-nowrap flex items-center gap-1.5 active:scale-95 transition">
-                <i class="fa-solid fa-gun"></i> ببجي
-            </a>
-            <a href="#freefire" class="px-3 py-1.5 rounded-xl bg-cyan-500/20 border border-cyan-500/40 text-cyan-300 text-xs font-black whitespace-nowrap flex items-center gap-1.5 active:scale-95 transition">
-                <i class="fa-solid fa-gem"></i> فري فاير
-            </a>
-            <a href="#pes" class="px-3 py-1.5 rounded-xl bg-blue-500/20 border border-blue-500/40 text-blue-300 text-xs font-black whitespace-nowrap flex items-center gap-1.5 active:scale-95 transition">
-                <i class="fa-solid fa-futbol"></i> بيس
-            </a>
-            <a href="#tiktok" class="px-3 py-1.5 rounded-xl bg-pink-500/20 border border-pink-500/40 text-pink-300 text-xs font-black whitespace-nowrap flex items-center gap-1.5 active:scale-95 transition">
-                <i class="fa-solid fa-coins"></i> تيك توك
-            </a>
-            <a href="#ludo" class="px-3 py-1.5 rounded-xl bg-emerald-500/20 border border-emerald-500/40 text-emerald-300 text-xs font-black whitespace-nowrap flex items-center gap-1.5 active:scale-95 transition">
-                <i class="fa-solid fa-dice"></i> يلا لودو
-            </a>
-        </div>
+        <h1 class="text-2xl font-black text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-sky-300 to-pink-400">
+            مركز الراشد الإلكتروني
+        </h1>
     </header>
 
-    <!-- Main Vertical Content -->
-    <main class="max-w-md mx-auto space-y-6 mt-4">
+    <!-- Main Dynamic Content Container -->
+    <main class="w-full max-w-md mx-auto my-auto py-3">
 
-        <!-- 1. ROBLOX -->
-        <section id="roblox" class="scroll-mt-28 bg-gradient-to-b from-neutral-900 via-red-950 to-black rounded-3xl border-2 border-red-500/50 p-4 shadow-2xl shadow-red-950/40 space-y-3">
-            <div class="flex items-center justify-between bg-gradient-to-r from-red-600 to-rose-800 p-3 rounded-2xl text-white shadow-lg">
-                <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 rounded-xl bg-black/40 flex items-center justify-center text-xl text-red-300">
-                        <i class="fa-solid fa-cubes"></i>
-                    </div>
-                    <div>
-                        <h2 class="text-lg font-black leading-tight">شحن روبوكس Roblox</h2>
-                        <p class="text-xs font-bold text-red-200">Roblox Robux</p>
-                    </div>
-                </div>
-                <span class="px-2.5 py-1 bg-black/50 rounded-lg text-xs font-black text-red-300 border border-red-400/30">فوري وآمن</span>
+        <!-- 1. HOME VIEW (GRID OF GAMES & SERVICES) -->
+        <section id="homeView" class="view-section space-y-4">
+            <div class="text-center space-y-1 mb-3">
+                <p class="text-sm font-extrabold text-slate-300">اختر الخدمة أو اللعبة للاطلاع على الأسعار</p>
             </div>
 
-            <!-- Roblox Items Vertical Stack -->
-            <div class="space-y-2">
-                <div class="flex items-center justify-between p-3 rounded-2xl bg-neutral-900/90 border border-red-500/20">
-                    <span class="text-base sm:text-lg font-black text-white flex items-center gap-2"><i class="fa-solid fa-cube text-red-400 text-sm"></i> 40 روبوكس</span>
-                    <span class="text-lg sm:text-xl font-black text-red-400 font-mono bg-black/60 px-3 py-1 rounded-xl border border-red-500/30">2,000 د.ع</span>
-                </div>
-                <div class="flex items-center justify-between p-3 rounded-2xl bg-neutral-900/90 border border-red-500/20">
-                    <span class="text-base sm:text-lg font-black text-white flex items-center gap-2"><i class="fa-solid fa-cube text-red-400 text-sm"></i> 80 روبوكس</span>
-                    <span class="text-lg sm:text-xl font-black text-red-400 font-mono bg-black/60 px-3 py-1 rounded-xl border border-red-500/30">3,000 د.ع</span>
-                </div>
-                <div class="flex items-center justify-between p-3 rounded-2xl bg-neutral-900/90 border border-red-500/20">
-                    <span class="text-base sm:text-lg font-black text-white flex items-center gap-2"><i class="fa-solid fa-cube text-red-400 text-sm"></i> 400 روبوكس</span>
-                    <span class="text-lg sm:text-xl font-black text-red-400 font-mono bg-black/60 px-3 py-1 rounded-xl border border-red-500/30">9,000 د.ع</span>
-                </div>
-                <div class="flex items-center justify-between p-3 rounded-2xl bg-neutral-900/90 border border-red-500/20">
-                    <span class="text-base sm:text-lg font-black text-white flex items-center gap-2"><i class="fa-solid fa-cube text-red-400 text-sm"></i> 800 روبوكس</span>
-                    <span class="text-lg sm:text-xl font-black text-red-400 font-mono bg-black/60 px-3 py-1 rounded-xl border border-red-500/30">16,000 د.ع</span>
-                </div>
-                <div class="flex items-center justify-between p-3 rounded-2xl bg-neutral-900/90 border border-red-500/20">
-                    <span class="text-base sm:text-lg font-black text-white flex items-center gap-2"><i class="fa-solid fa-cube text-red-400 text-sm"></i> 1,200 روبوكس</span>
-                    <span class="text-lg sm:text-xl font-black text-red-400 font-mono bg-black/60 px-3 py-1 rounded-xl border border-red-500/30">24,000 د.ع</span>
-                </div>
-                <div class="flex items-center justify-between p-3 rounded-2xl bg-neutral-900/90 border border-red-500/20">
-                    <span class="text-base sm:text-lg font-black text-white flex items-center gap-2"><i class="fa-solid fa-cube text-red-400 text-sm"></i> 1,700 روبوكس</span>
-                    <span class="text-lg sm:text-xl font-black text-red-400 font-mono bg-black/60 px-3 py-1 rounded-xl border border-red-500/30">31,000 د.ع</span>
-                </div>
-                <div class="flex items-center justify-between p-3 rounded-2xl bg-neutral-900/90 border border-red-500/20">
-                    <span class="text-base sm:text-lg font-black text-white flex items-center gap-2"><i class="fa-solid fa-cube text-red-400 text-sm"></i> 3,150 روبوكس</span>
-                    <span class="text-lg sm:text-xl font-black text-red-400 font-mono bg-black/60 px-3 py-1 rounded-xl border border-red-500/30">47,000 د.ع</span>
-                </div>
-                <div class="flex items-center justify-between p-3 rounded-2xl bg-neutral-900/90 border border-red-500/20">
-                    <span class="text-base sm:text-lg font-black text-white flex items-center gap-2"><i class="fa-solid fa-cube text-red-400 text-sm"></i> 4,500 روبوكس</span>
-                    <span class="text-lg sm:text-xl font-black text-red-400 font-mono bg-black/60 px-3 py-1 rounded-xl border border-red-500/30">75,000 د.ع</span>
-                </div>
-                <div class="flex items-center justify-between p-3 rounded-2xl bg-neutral-900/90 border border-red-500/20">
-                    <span class="text-base sm:text-lg font-black text-white flex items-center gap-2"><i class="fa-solid fa-cube text-red-400 text-sm"></i> 10,000 روبوكس</span>
-                    <span class="text-lg sm:text-xl font-black text-red-400 font-mono bg-black/60 px-3 py-1 rounded-xl border border-red-500/30">149,000 د.ع</span>
-                </div>
+            <div class="grid grid-cols-2 gap-3" id="servicesGrid">
+                <!-- Injected via JavaScript -->
             </div>
         </section>
 
-        <!-- 2. PUBG MOBILE -->
-        <section id="pubg" class="scroll-mt-28 bg-gradient-to-b from-stone-900 via-stone-950 to-black rounded-3xl border-2 border-amber-500/50 p-4 shadow-2xl shadow-amber-950/40 space-y-3">
-            <div class="flex items-center justify-between bg-gradient-to-r from-amber-600 to-amber-800 p-3 rounded-2xl text-white shadow-lg">
-                <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 rounded-xl bg-black/40 flex items-center justify-center text-xl text-amber-300">
-                        <i class="fa-solid fa-gun"></i>
-                    </div>
-                    <div>
-                        <h2 class="text-lg font-black leading-tight">شحن شدات ببجي</h2>
-                        <p class="text-xs font-bold text-amber-200">PUBG Mobile UC</p>
-                    </div>
+        <!-- 2. DETAIL VIEW (SELECTED SERVICE PRICES) -->
+        <section id="detailView" class="view-section hidden-view space-y-4">
+            <!-- Top Nav Back Button -->
+            <button onclick="navigateHome()" class="w-full py-3 px-4 rounded-2xl bg-slate-900 border-2 border-slate-700 text-white font-black text-sm flex items-center justify-between shadow-lg active:scale-98 transition">
+                <div class="flex items-center gap-2">
+                    <i class="fa-solid fa-arrow-right text-amber-400 text-lg"></i>
+                    <span>الرجوع إلى القائمة الرئيسية</span>
                 </div>
-                <span class="px-2.5 py-1 bg-black/50 rounded-lg text-xs font-black text-amber-300 border border-amber-400/30">فوري</span>
+                <span class="text-xs text-slate-400">تغيير اللعبة</span>
+            </button>
+
+            <!-- Service Header Card -->
+            <div id="detailHeader" class="p-4 rounded-3xl border-2 flex items-center justify-between shadow-xl">
+                <!-- Injected via JS -->
             </div>
 
-            <div class="space-y-2">
-                <div class="flex items-center justify-between p-3 rounded-2xl bg-stone-900/90 border border-amber-500/20">
-                    <span class="text-base sm:text-lg font-black text-white flex items-center gap-2"><i class="fa-solid fa-shield-halved text-amber-400 text-sm"></i> 60 شدة</span>
-                    <span class="text-lg sm:text-xl font-black text-amber-400 font-mono bg-black/60 px-3 py-1 rounded-xl border border-amber-500/30">2,000 د.ع</span>
-                </div>
-                <div class="flex items-center justify-between p-3 rounded-2xl bg-stone-900/90 border border-amber-500/20">
-                    <span class="text-base sm:text-lg font-black text-white flex items-center gap-2"><i class="fa-solid fa-shield-halved text-amber-400 text-sm"></i> 180 شدة</span>
-                    <span class="text-lg sm:text-xl font-black text-amber-400 font-mono bg-black/60 px-3 py-1 rounded-xl border border-amber-500/30">5,000 د.ع</span>
-                </div>
-                <div class="flex items-center justify-between p-3 rounded-2xl bg-stone-900/90 border border-amber-500/20">
-                    <span class="text-base sm:text-lg font-black text-white flex items-center gap-2"><i class="fa-solid fa-shield-halved text-amber-400 text-sm"></i> 385 شدة</span>
-                    <span class="text-lg sm:text-xl font-black text-amber-400 font-mono bg-black/60 px-3 py-1 rounded-xl border border-amber-500/30">10,000 د.ع</span>
-                </div>
-                <div class="flex items-center justify-between p-3 rounded-2xl bg-stone-900/90 border border-amber-500/20">
-                    <span class="text-base sm:text-lg font-black text-white flex items-center gap-2"><i class="fa-solid fa-shield-halved text-amber-400 text-sm"></i> 660 شدة</span>
-                    <span class="text-lg sm:text-xl font-black text-amber-400 font-mono bg-black/60 px-3 py-1 rounded-xl border border-amber-500/30">15,000 د.ع</span>
-                </div>
-                <div class="flex items-center justify-between p-3 rounded-2xl bg-stone-900/90 border border-amber-500/20">
-                    <span class="text-base sm:text-lg font-black text-white flex items-center gap-2"><i class="fa-solid fa-shield-halved text-amber-400 text-sm"></i> 720 شدة</span>
-                    <span class="text-lg sm:text-xl font-black text-amber-400 font-mono bg-black/60 px-3 py-1 rounded-xl border border-amber-500/30">17,000 د.ع</span>
-                </div>
-                <div class="flex items-center justify-between p-3 rounded-2xl bg-stone-900/90 border border-amber-500/20">
-                    <span class="text-base sm:text-lg font-black text-white flex items-center gap-2"><i class="fa-solid fa-shield-halved text-amber-400 text-sm"></i> 1800 شدة</span>
-                    <span class="text-lg sm:text-xl font-black text-amber-400 font-mono bg-black/60 px-3 py-1 rounded-xl border border-amber-500/30">35,000 د.ع</span>
-                </div>
-                <div class="flex items-center justify-between p-3 rounded-2xl bg-stone-900/90 border border-amber-500/20">
-                    <span class="text-base sm:text-lg font-black text-white flex items-center gap-2"><i class="fa-solid fa-shield-halved text-amber-400 text-sm"></i> 3850 شدة</span>
-                    <span class="text-lg sm:text-xl font-black text-amber-400 font-mono bg-black/60 px-3 py-1 rounded-xl border border-amber-500/30">70,000 د.ع</span>
-                </div>
-                <div class="flex items-center justify-between p-3 rounded-2xl bg-stone-900/90 border border-amber-500/20">
-                    <span class="text-base sm:text-lg font-black text-white flex items-center gap-2"><i class="fa-solid fa-shield-halved text-amber-400 text-sm"></i> 8100 شدة</span>
-                    <span class="text-lg sm:text-xl font-black text-amber-400 font-mono bg-black/60 px-3 py-1 rounded-xl border border-amber-500/30">135,000 د.ع</span>
-                </div>
-            </div>
-        </section>
-
-        <!-- 3. FREE FIRE -->
-        <section id="freefire" class="scroll-mt-28 bg-gradient-to-b from-indigo-950 via-slate-950 to-black rounded-3xl border-2 border-cyan-500/50 p-4 shadow-2xl shadow-cyan-950/40 space-y-3">
-            <div class="flex items-center justify-between bg-gradient-to-r from-cyan-600 to-blue-700 p-3 rounded-2xl text-white shadow-lg">
-                <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 rounded-xl bg-black/40 flex items-center justify-center text-xl text-cyan-300">
-                        <i class="fa-solid fa-gem"></i>
-                    </div>
-                    <div>
-                        <h2 class="text-lg font-black leading-tight">شحن جواهر فري فاير</h2>
-                        <p class="text-xs font-bold text-cyan-200">Free Fire MAX Diamonds</p>
-                    </div>
-                </div>
-                <span class="px-2.5 py-1 bg-black/50 rounded-lg text-xs font-black text-cyan-300 border border-cyan-400/30">فوري</span>
-            </div>
-
-            <div class="space-y-2">
-                <div class="flex items-center justify-between p-3 rounded-2xl bg-slate-900/90 border border-cyan-500/20">
-                    <span class="text-base sm:text-lg font-black text-white flex items-center gap-2"><i class="fa-solid fa-gem text-cyan-400 text-sm"></i> 110 جوهرة</span>
-                    <span class="text-lg sm:text-xl font-black text-cyan-300 font-mono bg-black/60 px-3 py-1 rounded-xl border border-cyan-500/30">2.5 ألف د.ع</span>
-                </div>
-                <div class="flex items-center justify-between p-3 rounded-2xl bg-slate-900/90 border border-cyan-500/20">
-                    <span class="text-base sm:text-lg font-black text-white flex items-center gap-2"><i class="fa-solid fa-gem text-cyan-400 text-sm"></i> 210 جوهرة</span>
-                    <span class="text-lg sm:text-xl font-black text-cyan-300 font-mono bg-black/60 px-3 py-1 rounded-xl border border-cyan-500/30">4 ألف د.ع</span>
-                </div>
-                <div class="flex items-center justify-between p-3 rounded-2xl bg-slate-900/90 border border-cyan-500/20">
-                    <span class="text-base sm:text-lg font-black text-white flex items-center gap-2"><i class="fa-solid fa-gem text-cyan-400 text-sm"></i> 530 جوهرة</span>
-                    <span class="text-lg sm:text-xl font-black text-cyan-300 font-mono bg-black/60 px-3 py-1 rounded-xl border border-cyan-500/30">8 ألف د.ع</span>
-                </div>
-                <div class="flex items-center justify-between p-3 rounded-2xl bg-slate-900/90 border border-cyan-500/20">
-                    <span class="text-base sm:text-lg font-black text-white flex items-center gap-2"><i class="fa-solid fa-gem text-cyan-400 text-sm"></i> 1080 جوهرة</span>
-                    <span class="text-lg sm:text-xl font-black text-cyan-300 font-mono bg-black/60 px-3 py-1 rounded-xl border border-cyan-500/30">15 ألف د.ع</span>
-                </div>
-                <div class="flex items-center justify-between p-3 rounded-2xl bg-slate-900/90 border border-cyan-500/20">
-                    <span class="text-base sm:text-lg font-black text-white flex items-center gap-2"><i class="fa-solid fa-gem text-cyan-400 text-sm"></i> 2200 جوهرة</span>
-                    <span class="text-lg sm:text-xl font-black text-cyan-300 font-mono bg-black/60 px-3 py-1 rounded-xl border border-cyan-500/30">29 ألف د.ع</span>
-                </div>
-            </div>
-        </section>
-
-        <!-- 4. eFOOTBALL PES -->
-        <section id="pes" class="scroll-mt-28 bg-gradient-to-b from-blue-950 via-slate-950 to-black rounded-3xl border-2 border-yellow-500/50 p-4 shadow-2xl shadow-blue-950/40 space-y-3">
-            <div class="flex items-center justify-between bg-gradient-to-r from-blue-700 to-indigo-800 p-3 rounded-2xl text-white shadow-lg">
-                <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 rounded-xl bg-black/40 flex items-center justify-center text-xl text-yellow-400">
-                        <i class="fa-solid fa-futbol"></i>
-                    </div>
-                    <div>
-                        <h2 class="text-lg font-black leading-tight">شحن لعبة بيس</h2>
-                        <p class="text-xs font-bold text-yellow-200">eFootball Coins</p>
-                    </div>
-                </div>
-                <span class="px-2.5 py-1 bg-black/50 rounded-lg text-xs font-black text-yellow-300 border border-yellow-400/30">فوري</span>
-            </div>
-
-            <div class="space-y-2">
-                <div class="flex items-center justify-between p-3 rounded-2xl bg-blue-950/60 border border-yellow-500/20">
-                    <span class="text-base sm:text-lg font-black text-white flex items-center gap-2"><i class="fa-solid fa-coins text-yellow-400 text-sm"></i> 130 كوينز</span>
-                    <span class="text-lg sm:text-xl font-black text-yellow-400 font-mono bg-black/60 px-3 py-1 rounded-xl border border-yellow-500/30">3,000 د.ع</span>
-                </div>
-                <div class="flex items-center justify-between p-3 rounded-2xl bg-blue-950/60 border border-yellow-500/20">
-                    <div>
-                        <span class="text-base sm:text-lg font-black text-white flex items-center gap-2"><i class="fa-solid fa-coins text-yellow-400 text-sm"></i> 300 كوينز</span>
-                        <span class="text-xs font-bold text-emerald-400 block mr-6">293 + 7 مجانية</span>
-                    </div>
-                    <span class="text-lg sm:text-xl font-black text-yellow-400 font-mono bg-black/60 px-3 py-1 rounded-xl border border-yellow-500/30">5,500 د.ع</span>
-                </div>
-                <div class="flex items-center justify-between p-3 rounded-2xl bg-blue-950/60 border border-yellow-500/20">
-                    <div>
-                        <span class="text-base sm:text-lg font-black text-white flex items-center gap-2"><i class="fa-solid fa-coins text-yellow-400 text-sm"></i> 550 كوينز</span>
-                        <span class="text-xs font-bold text-emerald-400 block mr-6">530 + 20 مجانية</span>
-                    </div>
-                    <span class="text-lg sm:text-xl font-black text-yellow-400 font-mono bg-black/60 px-3 py-1 rounded-xl border border-yellow-500/30">9,000 د.ع</span>
-                </div>
-                <div class="flex items-center justify-between p-3 rounded-2xl bg-blue-950/60 border border-yellow-500/20">
-                    <div>
-                        <span class="text-base sm:text-lg font-black text-white flex items-center gap-2"><i class="fa-solid fa-coins text-yellow-400 text-sm"></i> 750 كوينز</span>
-                        <span class="text-xs font-bold text-emerald-400 block mr-6">715 + 35 مجانية</span>
-                    </div>
-                    <span class="text-lg sm:text-xl font-black text-yellow-400 font-mono bg-black/60 px-3 py-1 rounded-xl border border-yellow-500/30">12,000 د.ع</span>
-                </div>
-                <div class="flex items-center justify-between p-3 rounded-2xl bg-blue-950/60 border border-yellow-500/20">
-                    <div>
-                        <span class="text-base sm:text-lg font-black text-white flex items-center gap-2"><i class="fa-solid fa-coins text-yellow-400 text-sm"></i> 3250 كوينز</span>
-                        <span class="text-xs font-bold text-emerald-400 block mr-6">2930 + 320 مجانية</span>
-                    </div>
-                    <span class="text-lg sm:text-xl font-black text-yellow-400 font-mono bg-black/60 px-3 py-1 rounded-xl border border-yellow-500/30">45,000 د.ع</span>
-                </div>
-            </div>
-        </section>
-
-        <!-- 5. TIKTOK -->
-        <section id="tiktok" class="scroll-mt-28 bg-gradient-to-b from-zinc-900 via-neutral-950 to-black rounded-3xl border-2 border-pink-500/50 p-4 shadow-2xl shadow-pink-950/40 space-y-3">
-            <div class="flex items-center justify-between bg-gradient-to-r from-pink-600 to-rose-700 p-3 rounded-2xl text-white shadow-lg">
-                <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 rounded-xl bg-black/40 flex items-center justify-center text-xl text-pink-300">
-                        <i class="fa-solid fa-coins"></i>
-                    </div>
-                    <div>
-                        <h2 class="text-lg font-black leading-tight">شحن عملات تيك توك</h2>
-                        <p class="text-xs font-bold text-pink-200">TikTok Coins</p>
-                    </div>
-                </div>
-                <span class="px-2.5 py-1 bg-black/50 rounded-lg text-xs font-black text-pink-300 border border-pink-400/30">فوري</span>
-            </div>
-
-            <div class="space-y-2">
-                <div class="flex items-center justify-between p-3 rounded-2xl bg-zinc-900/90 border border-pink-500/20">
-                    <span class="text-base sm:text-lg font-black text-white flex items-center gap-2"><i class="fa-brands fa-tiktok text-pink-400 text-sm"></i> 70 عملة</span>
-                    <span class="text-lg sm:text-xl font-black text-pink-400 font-mono bg-black/60 px-3 py-1 rounded-xl border border-pink-500/30">2,500 د.ع</span>
-                </div>
-                <div class="flex items-center justify-between p-3 rounded-2xl bg-zinc-900/90 border border-pink-500/20">
-                    <span class="text-base sm:text-lg font-black text-white flex items-center gap-2"><i class="fa-brands fa-tiktok text-pink-400 text-sm"></i> 350 عملة</span>
-                    <span class="text-lg sm:text-xl font-black text-pink-400 font-mono bg-black/60 px-3 py-1 rounded-xl border border-pink-500/30">8,000 د.ع</span>
-                </div>
-                <div class="flex items-center justify-between p-3 rounded-2xl bg-zinc-900/90 border border-pink-500/20">
-                    <span class="text-base sm:text-lg font-black text-white flex items-center gap-2"><i class="fa-brands fa-tiktok text-pink-400 text-sm"></i> 700 عملة</span>
-                    <span class="text-lg sm:text-xl font-black text-pink-400 font-mono bg-black/60 px-3 py-1 rounded-xl border border-pink-500/30">15,000 د.ع</span>
-                </div>
-                <div class="flex items-center justify-between p-3 rounded-2xl bg-zinc-900/90 border border-pink-500/20">
-                    <span class="text-base sm:text-lg font-black text-white flex items-center gap-2"><i class="fa-brands fa-tiktok text-pink-400 text-sm"></i> 1,400 عملة</span>
-                    <span class="text-lg sm:text-xl font-black text-pink-400 font-mono bg-black/60 px-3 py-1 rounded-xl border border-pink-500/30">29,000 د.ع</span>
-                </div>
-                <div class="flex items-center justify-between p-3 rounded-2xl bg-zinc-900/90 border border-pink-500/20">
-                    <span class="text-base sm:text-lg font-black text-white flex items-center gap-2"><i class="fa-brands fa-tiktok text-pink-400 text-sm"></i> 3,500 عملة</span>
-                    <span class="text-lg sm:text-xl font-black text-pink-400 font-mono bg-black/60 px-3 py-1 rounded-xl border border-pink-500/30">70,000 د.ع</span>
-                </div>
-                <div class="flex items-center justify-between p-3 rounded-2xl bg-zinc-900/90 border border-pink-500/20">
-                    <span class="text-base sm:text-lg font-black text-white flex items-center gap-2"><i class="fa-brands fa-tiktok text-pink-400 text-sm"></i> 7,000 عملة</span>
-                    <span class="text-lg sm:text-xl font-black text-pink-400 font-mono bg-black/60 px-3 py-1 rounded-xl border border-pink-500/30">140,000 د.ع</span>
-                </div>
-                <div class="flex items-center justify-between p-3 rounded-2xl bg-zinc-900/90 border border-pink-500/20">
-                    <span class="text-base sm:text-lg font-black text-white flex items-center gap-2"><i class="fa-brands fa-tiktok text-pink-400 text-sm"></i> 17,500 عملة</span>
-                    <span class="text-lg sm:text-xl font-black text-pink-400 font-mono bg-black/60 px-3 py-1 rounded-xl border border-pink-500/30">345,000 د.ع</span>
-                </div>
-            </div>
-        </section>
-
-        <!-- 6. YALLA LUDO -->
-        <section id="ludo" class="scroll-mt-28 bg-gradient-to-b from-emerald-950 via-teal-950 to-black rounded-3xl border-2 border-emerald-500/50 p-4 shadow-2xl shadow-emerald-950/40 space-y-3">
-            <div class="flex items-center justify-between bg-gradient-to-r from-emerald-600 to-teal-700 p-3 rounded-2xl text-white shadow-lg">
-                <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 rounded-xl bg-black/40 flex items-center justify-center text-xl text-emerald-300">
-                        <i class="fa-solid fa-dice"></i>
-                    </div>
-                    <div>
-                        <h2 class="text-lg font-black leading-tight">شحن لعبة يلا لودو</h2>
-                        <p class="text-xs font-bold text-emerald-200">Yalla Ludo</p>
-                    </div>
-                </div>
-                <span class="px-2.5 py-1 bg-black/50 rounded-lg text-xs font-black text-emerald-300 border border-emerald-400/30">فوري</span>
-            </div>
-
-            <div class="space-y-2">
-                <div class="flex items-center justify-between p-3 rounded-2xl bg-emerald-950/60 border border-emerald-500/20">
-                    <span class="text-xs sm:text-sm font-black text-white flex items-center gap-1.5"><i class="fa-solid fa-gem text-cyan-400"></i> 860 / <i class="fa-solid fa-coins text-amber-400"></i> 68,500</span>
-                    <span class="text-base sm:text-lg font-black text-emerald-300 font-mono bg-black/60 px-2.5 py-1 rounded-xl border border-emerald-500/30">4,000 د.ع</span>
-                </div>
-                <div class="flex items-center justify-between p-3 rounded-2xl bg-emerald-950/60 border border-emerald-500/20">
-                    <span class="text-xs sm:text-sm font-black text-white flex items-center gap-1.5"><i class="fa-solid fa-gem text-cyan-400"></i> 2,320 / <i class="fa-solid fa-coins text-amber-400"></i> 223,700</span>
-                    <span class="text-base sm:text-lg font-black text-emerald-300 font-mono bg-black/60 px-2.5 py-1 rounded-xl border border-emerald-500/30">8,000 د.ع</span>
-                </div>
-                <div class="flex items-center justify-between p-3 rounded-2xl bg-emerald-950/60 border border-emerald-500/20">
-                    <span class="text-xs sm:text-sm font-black text-white flex items-center gap-1.5"><i class="fa-solid fa-gem text-cyan-400"></i> 5,150 / <i class="fa-solid fa-coins text-amber-400"></i> 1,463,320</span>
-                    <span class="text-base sm:text-lg font-black text-emerald-300 font-mono bg-black/60 px-2.5 py-1 rounded-xl border border-emerald-500/30">15,000 د.ع</span>
-                </div>
-                <div class="flex items-center justify-between p-3 rounded-2xl bg-emerald-950/60 border border-emerald-500/20">
-                    <span class="text-xs sm:text-sm font-black text-white flex items-center gap-1.5"><i class="fa-solid fa-gem text-cyan-400"></i> 13,580 / <i class="fa-solid fa-coins text-amber-400"></i> 3,666,470</span>
-                    <span class="text-base sm:text-lg font-black text-emerald-300 font-mono bg-black/60 px-2.5 py-1 rounded-xl border border-emerald-500/30">36,000 د.ع</span>
-                </div>
-                <div class="flex items-center justify-between p-3 rounded-2xl bg-emerald-950/60 border border-emerald-500/20">
-                    <span class="text-xs sm:text-sm font-black text-white flex items-center gap-1.5"><i class="fa-solid fa-gem text-cyan-400"></i> 27,640 / <i class="fa-solid fa-coins text-amber-400"></i> 9,973,990</span>
-                    <span class="text-base sm:text-lg font-black text-emerald-300 font-mono bg-black/60 px-2.5 py-1 rounded-xl border border-emerald-500/30">70,000 د.ع</span>
-                </div>
-                <div class="flex items-center justify-between p-3 rounded-2xl bg-emerald-950/60 border border-emerald-500/20">
-                    <span class="text-xs sm:text-sm font-black text-white flex items-center gap-1.5"><i class="fa-solid fa-gem text-cyan-400"></i> 55,800 / <i class="fa-solid fa-coins text-amber-400"></i> 25,236,460</span>
-                    <span class="text-base sm:text-lg font-black text-emerald-300 font-mono bg-black/60 px-2.5 py-1 rounded-xl border border-emerald-500/30">138,000 د.ع</span>
-                </div>
+            <!-- Package Rows Container -->
+            <div id="detailPackages" class="space-y-2.5">
+                <!-- Injected via JS -->
             </div>
         </section>
 
     </main>
 
-    <!-- Footer Note -->
-    <footer class="max-w-md mx-auto text-center py-6 text-xs text-slate-500 font-bold">
-        اختر الفئة المطلوبة وأبلغ موظف المحل مباشرة
+    <!-- Footer -->
+    <footer class="w-full max-w-md mx-auto text-center py-3 text-xs text-slate-500 font-bold border-t border-slate-900 mt-2">
+        أبلغ الموظف بالباقة المطلوبة للشحن مباشرة
     </footer>
 
+    <!-- Logic Script -->
+    <script>
+        // Custom Logos using Provided Direct Links
+        const logos = {
+            apple: `<i class="fa-brands fa-apple text-3xl text-white"></i>`,
+            roblox: `<img src="https://i.ibb.co/4Rfj8yDB/roblox.jpg" alt="Roblox" class="w-full h-full object-cover rounded-xl">`,
+            pubg: `<img src="https://i.ibb.co/5W7GsKxC/pubg.jpg" alt="PUBG Mobile" class="w-full h-full object-cover rounded-xl">`,
+            freefire: `<img src="https://i.ibb.co/dw3pdMxS/ff.jpg" alt="Free Fire" class="w-full h-full object-cover rounded-xl">`,
+            pes: `<img src="https://i.ibb.co/5h1JTW63/pes.jpg" alt="eFootball" class="w-full h-full object-cover rounded-xl">`,
+            tiktok: `<i class="fa-brands fa-tiktok text-3xl text-white"></i>`,
+            ludo: `<img src="https://i.ibb.co/vCy8L881/lodo.jpg" alt="Yalla Ludo" class="w-full h-full object-cover rounded-xl">`
+        };
+
+        const servicesData = [
+            {
+                id: 'apple',
+                name: 'رصيد أبل (آيتونز)',
+                subtitle: 'Apple Gift Cards',
+                logo: logos.apple,
+                cardBg: 'from-slate-900 via-slate-800 to-black',
+                border: 'border-slate-500/50',
+                headerBg: 'from-slate-700 to-slate-900 text-white border-slate-400',
+                priceColor: 'text-slate-100',
+                badgeColor: 'text-slate-300 bg-black/50 border-slate-400/30',
+                packages: [
+                    { amount: '2 دولار', price: '4,000 د.ع' },
+                    { amount: '3 دولار', price: '6,000 د.ع' },
+                    { amount: '4 دولار', price: '7,000 د.ع' },
+                    { amount: '5 دولار', price: '9,000 د.ع' },
+                    { amount: '10 دولار', price: '16,000 د.ع' },
+                    { amount: '15 دولار', price: '23,000 د.ع' },
+                    { amount: '20 دولار', price: '30,000 د.ع' },
+                    { amount: '25 دولار', price: '37,000 د.ع' },
+                    { amount: '30 دولار', price: '43,000 د.ع' },
+                    { amount: '40 دولار', price: '57,000 د.ع' },
+                    { amount: '50 دولار', price: '71,000 د.ع' },
+                    { amount: '60 دولار', price: '86,000 د.ع' },
+                    { amount: '100 دولار', price: '141,000 د.ع' }
+                ]
+            },
+            {
+                id: 'roblox',
+                name: 'روبلوكس Roblox',
+                subtitle: 'Roblox Robux',
+                logo: logos.roblox,
+                cardBg: 'from-neutral-900 via-red-950 to-black',
+                border: 'border-red-500/50',
+                headerBg: 'from-red-600 to-rose-800 text-white border-red-400',
+                priceColor: 'text-red-400',
+                badgeColor: 'text-red-300 bg-black/50 border-red-400/30',
+                packages: [
+                    { amount: '40 روبوكس', price: '2,000 د.ع' },
+                    { amount: '80 روبوكس', price: '3,000 د.ع' },
+                    { amount: '400 روبوكس', price: '9,000 د.ع' },
+                    { amount: '800 روبوكس', price: '16,000 د.ع' },
+                    { amount: '1,200 روبوكس', price: '24,000 د.ع' },
+                    { amount: '1,700 روبوكس', price: '31,000 د.ع' },
+                    { amount: '3,150 روبوكس', price: '47,000 د.ع' },
+                    { amount: '4,500 روبوكس', price: '75,000 د.ع' },
+                    { amount: '10,000 روبوكس', price: '149,000 د.ع' }
+                ]
+            },
+            {
+                id: 'pubg',
+                name: 'ببجي موبايل',
+                subtitle: 'PUBG Mobile UC',
+                logo: logos.pubg,
+                cardBg: 'from-stone-900 via-amber-950 to-black',
+                border: 'border-amber-500/50',
+                headerBg: 'from-amber-600 to-amber-800 text-white border-amber-400',
+                priceColor: 'text-amber-400',
+                badgeColor: 'text-amber-300 bg-black/50 border-amber-400/30',
+                packages: [
+                    { amount: '60 شدة', price: '2,000 د.ع' },
+                    { amount: '180 شدة', price: '5,000 د.ع' },
+                    { amount: '385 شدة', price: '10,000 د.ع' },
+                    { amount: '660 شدة', price: '15,000 د.ع' },
+                    { amount: '720 شدة', price: '17,000 د.ع' },
+                    { amount: '1800 شدة', price: '35,000 د.ع' },
+                    { amount: '3850 شدة', price: '70,000 د.ع' },
+                    { amount: '8100 شدة', price: '135,000 د.ع' }
+                ]
+            },
+            {
+                id: 'freefire',
+                name: 'شحن لعبة فري فاير',
+                subtitle: 'Free Fire Diamonds',
+                logo: logos.freefire,
+                cardBg: 'from-indigo-950 via-slate-950 to-black',
+                border: 'border-cyan-500/50',
+                headerBg: 'from-cyan-600 to-blue-700 text-white border-cyan-400',
+                priceColor: 'text-cyan-300',
+                badgeColor: 'text-cyan-300 bg-black/50 border-cyan-400/30',
+                packages: [
+                    { amount: '110 جوهرة', price: '2,500 د.ع' },
+                    { amount: '210 جوهرة', price: '4,000 د.ع' },
+                    { amount: '530 جوهرة', price: '8,000 د.ع' },
+                    { amount: '1080 جوهرة', price: '15,000 د.ع' },
+                    { amount: '2200 جوهرة', price: '29,000 د.ع' }
+                ]
+            },
+            {
+                id: 'pes',
+                name: 'بيس eFootball',
+                subtitle: 'eFootball Coins',
+                logo: logos.pes,
+                cardBg: 'from-blue-950 via-slate-950 to-black',
+                border: 'border-yellow-500/50',
+                headerBg: 'from-blue-700 to-indigo-800 text-yellow-300 border-yellow-400',
+                priceColor: 'text-yellow-400',
+                badgeColor: 'text-yellow-300 bg-black/50 border-yellow-400/30',
+                packages: [
+                    { amount: '130 كوينز', price: '3,000 د.ع' },
+                    { amount: '300 كوينز', extra: '293 + 7 مجانية', price: '5,500 د.ع' },
+                    { amount: '550 كوينز', extra: '530 + 20 مجانية', price: '9,000 د.ع' },
+                    { amount: '750 كوينز', extra: '715 + 35 مجانية', price: '12,000 د.ع' },
+                    { amount: '3250 كوينز', extra: '2930 + 320 مجانية', price: '45,000 د.ع' }
+                ]
+            },
+            {
+                id: 'tiktok',
+                name: 'تيك توك TikTok',
+                subtitle: 'TikTok Coins',
+                logo: logos.tiktok,
+                cardBg: 'from-zinc-900 via-neutral-950 to-black',
+                border: 'border-pink-500/50',
+                headerBg: 'from-pink-600 to-rose-700 text-white border-pink-400',
+                priceColor: 'text-pink-400',
+                badgeColor: 'text-pink-300 bg-black/50 border-pink-400/30',
+                packages: [
+                    { amount: '70 عملة', price: '2,500 د.ع' },
+                    { amount: '350 عملة', price: '8,000 د.ع' },
+                    { amount: '700 عملة', price: '15,000 د.ع' },
+                    { amount: '1,400 عملة', price: '29,000 د.ع' },
+                    { amount: '3,500 عملة', price: '70,000 د.ع' },
+                    { amount: '7,000 عملة', price: '140,000 د.ع' },
+                    { amount: '17,500 عملة', price: '345,000 د.ع' }
+                ]
+            },
+            {
+                id: 'ludo',
+                name: 'يلا لودو Yalla Ludo',
+                subtitle: 'Gems & Gold',
+                logo: logos.ludo,
+                cardBg: 'from-emerald-950 via-teal-950 to-black',
+                border: 'border-emerald-500/50',
+                headerBg: 'from-emerald-600 to-teal-700 text-white border-emerald-400',
+                priceColor: 'text-emerald-300',
+                badgeColor: 'text-emerald-300 bg-black/50 border-emerald-400/30',
+                packages: [
+                    { amount: '860 ألماس / 68,500 ذهب', price: '4,000 د.ع' },
+                    { amount: '2,320 ألماس / 223,700 ذهب', price: '8,000 د.ع' },
+                    { amount: '5,150 ألماس / 1,463,320 ذهب', price: '15,000 د.ع' },
+                    { amount: '13,580 ألماس / 3,666,470 ذهب', price: '36,000 د.ع' },
+                    { amount: '27,640 ألماس / 9,973,990 ذهب', price: '70,000 د.ع' },
+                    { amount: '55,800 ألماس / 25,236,460 ذهب', price: '138,000 د.ع' }
+                ]
+            }
+        ];
+
+        // Render Home Grid Cards
+        function renderHomeGrid() {
+            const grid = document.getElementById('servicesGrid');
+            grid.innerHTML = servicesData.map(service => `
+                <button onclick="openDetail('${service.id}')" 
+                        class="bg-gradient-to-b ${service.cardBg} border-2 ${service.border} p-4 rounded-3xl flex flex-col items-center text-center justify-between space-y-3 shadow-xl hover:scale-105 active:scale-95 transition cursor-pointer overflow-hidden">
+                    <div class="w-16 h-16 rounded-2xl bg-black/50 border border-white/10 flex items-center justify-center text-3xl shadow-inner overflow-hidden p-0.5">
+                        ${service.logo}
+                    </div>
+                    <div>
+                        <h3 class="font-black text-white text-base leading-tight">${service.name}</h3>
+                        <p class="text-[11px] text-slate-400 font-bold mt-0.5">${service.subtitle}</p>
+                    </div>
+                    <span class="w-full py-1.5 rounded-xl bg-white/10 border border-white/20 text-xs font-black text-amber-300">
+                        عرض الأسعار
+                    </span>
+                </button>
+            `).join('');
+        }
+
+        // Open Service Details View
+        function openDetail(serviceId, pushHistory = true) {
+            const service = servicesData.find(s => s.id === serviceId);
+            if (!service) return;
+
+            // Render Header
+            const header = document.getElementById('detailHeader');
+            header.className = `p-4 rounded-3xl border-2 bg-gradient-to-r ${service.headerBg} flex items-center justify-between shadow-xl`;
+            header.innerHTML = `
+                <div class="flex items-center gap-3">
+                    <div class="w-14 h-14 rounded-2xl bg-black/40 flex items-center justify-center border border-white/20 overflow-hidden p-0.5">
+                        ${service.logo}
+                    </div>
+                    <div class="text-right">
+                        <h2 class="text-xl font-black leading-tight">${service.name}</h2>
+                        <p class="text-xs opacity-90 font-bold">${service.subtitle}</p>
+                    </div>
+                </div>
+                <span class="px-3 py-1 rounded-xl text-xs font-black border ${service.badgeColor}">تسليم فوري</span>
+            `;
+
+            // Render Package Rows
+            const packagesContainer = document.getElementById('detailPackages');
+            packagesContainer.innerHTML = service.packages.map(pkg => `
+                <div class="flex items-center justify-between gap-2 p-3.5 rounded-2xl bg-slate-900 border border-slate-800 shadow-sm">
+                    <div class="flex-1 min-w-0">
+                        <span class="text-sm sm:text-base font-black text-white block truncate">
+                            ${pkg.amount}
+                        </span>
+                        ${pkg.extra ? `<span class="text-xs font-bold text-emerald-400 block">${pkg.extra}</span>` : ''}
+                    </div>
+                    <span class="text-base sm:text-lg font-black ${service.priceColor} font-mono bg-slate-950 px-3 py-1 rounded-xl border border-slate-800 whitespace-nowrap shrink-0">
+                        ${pkg.price}
+                    </span>
+                </div>
+            `).join('');
+
+            // Switch Views
+            document.getElementById('homeView').classList.add('hidden-view');
+            document.getElementById('detailView').classList.remove('hidden-view');
+
+            if (pushHistory) {
+                history.pushState({ view: 'detail', id: serviceId }, '', `#${serviceId}`);
+            }
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Navigate Back to Home
+        function navigateHome(pushHistory = true) {
+            document.getElementById('detailView').classList.add('hidden-view');
+            document.getElementById('homeView').classList.remove('hidden-view');
+
+            if (pushHistory) {
+                history.pushState({ view: 'home' }, '', window.location.pathname);
+            }
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Handle Hardware/Browser Back Button
+        window.onpopstate = function(event) {
+            if (event.state && event.state.view === 'detail') {
+                openDetail(event.state.id, false);
+            } else {
+                navigateHome(false);
+            }
+        };
+
+        // Initialize App
+        window.onload = function() {
+            renderHomeGrid();
+            
+            // Check deep link hash
+            const hash = window.location.hash.replace('#', '');
+            if (hash && servicesData.some(s => s.id === hash)) {
+                openDetail(hash, false);
+            }
+        };
+    </script>
 </body>
 </html>
