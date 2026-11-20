@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
@@ -28,14 +29,74 @@
             color: #ffffff;
             user-select: none;
             -webkit-user-select: none;
+            overflow-x: hidden; /* لمنع ظهور شريط التمرير الأفقي أثناء الأنيميشن */
         }
-        .view-section {
-            transition: opacity 0.25s ease-in-out, transform 0.25s ease-in-out;
+
+        /* --- Animations (التأثيرات الحركية) --- */
+        
+        /* 1. حركة ظهور البطاقات المتدرجة للأسفل وللأعلى */
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px) scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
         }
+
+        /* 2. حركة الانزلاق عند الدخول لتفاصيل اللعبة */
+        @keyframes slideInDetail {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* 3. حركة الانزلاق عند الرجوع للصفحة الرئيسية */
+        @keyframes slideBackHome {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* 4. تأثير التحميل (النبض الضوئي) */
+        @keyframes shimmer {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+
+        /* Classes to apply animations */
+        .animate-item {
+            opacity: 0;
+            animation: fadeUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        .animate-detail-enter {
+            animation: slideInDetail 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        .animate-home-enter {
+            animation: slideBackHome 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        /* Skeleton Loading Effect */
+        .skeleton-box {
+            background: linear-gradient(90deg, #0f172a 25%, #1e293b 50%, #0f172a 75%);
+            background-size: 200% 100%;
+            animation: shimmer 1.5s infinite linear;
+        }
+
         .hidden-view {
             display: none !important;
-            opacity: 0;
-            transform: scale(0.98);
         }
     </style>
 </head>
@@ -56,20 +117,56 @@
     <main class="w-full max-w-md mx-auto my-auto py-3">
 
         <!-- 1. HOME VIEW (GRID OF GAMES & SERVICES) -->
-        <section id="homeView" class="view-section space-y-4">
+        <section id="homeView" class="space-y-4">
             <div class="text-center space-y-1 mb-3">
                 <p class="text-sm font-extrabold text-slate-300">اختر الخدمة أو اللعبة للاطلاع على الأسعار</p>
             </div>
 
-            <div class="grid grid-cols-2 gap-3" id="servicesGrid">
+            <!-- Skeleton Loader Grid (يظهر أول ما يفتح الموقع) -->
+            <div id="skeletonGrid" class="grid grid-cols-2 gap-3">
+                <!-- 6 هيكل تحميل وهمي -->
+                <div class="skeleton-box h-40 rounded-3xl border border-slate-800/80 p-4 flex flex-col items-center justify-between shadow-xl">
+                    <div class="w-16 h-16 rounded-2xl bg-slate-800/50"></div>
+                    <div class="w-20 h-4 rounded-lg bg-slate-800/50"></div>
+                    <div class="w-full h-8 rounded-xl bg-slate-800/50"></div>
+                </div>
+                <div class="skeleton-box h-40 rounded-3xl border border-slate-800/80 p-4 flex flex-col items-center justify-between shadow-xl">
+                    <div class="w-16 h-16 rounded-2xl bg-slate-800/50"></div>
+                    <div class="w-20 h-4 rounded-lg bg-slate-800/50"></div>
+                    <div class="w-full h-8 rounded-xl bg-slate-800/50"></div>
+                </div>
+                <div class="skeleton-box h-40 rounded-3xl border border-slate-800/80 p-4 flex flex-col items-center justify-between shadow-xl">
+                    <div class="w-16 h-16 rounded-2xl bg-slate-800/50"></div>
+                    <div class="w-20 h-4 rounded-lg bg-slate-800/50"></div>
+                    <div class="w-full h-8 rounded-xl bg-slate-800/50"></div>
+                </div>
+                <div class="skeleton-box h-40 rounded-3xl border border-slate-800/80 p-4 flex flex-col items-center justify-between shadow-xl">
+                    <div class="w-16 h-16 rounded-2xl bg-slate-800/50"></div>
+                    <div class="w-20 h-4 rounded-lg bg-slate-800/50"></div>
+                    <div class="w-full h-8 rounded-xl bg-slate-800/50"></div>
+                </div>
+                <div class="skeleton-box h-40 rounded-3xl border border-slate-800/80 p-4 flex flex-col items-center justify-between shadow-xl">
+                    <div class="w-16 h-16 rounded-2xl bg-slate-800/50"></div>
+                    <div class="w-20 h-4 rounded-lg bg-slate-800/50"></div>
+                    <div class="w-full h-8 rounded-xl bg-slate-800/50"></div>
+                </div>
+                <div class="skeleton-box h-40 rounded-3xl border border-slate-800/80 p-4 flex flex-col items-center justify-between shadow-xl">
+                    <div class="w-16 h-16 rounded-2xl bg-slate-800/50"></div>
+                    <div class="w-20 h-4 rounded-lg bg-slate-800/50"></div>
+                    <div class="w-full h-8 rounded-xl bg-slate-800/50"></div>
+                </div>
+            </div>
+
+            <!-- Actual Services Grid (يظهر بعد التحميل) -->
+            <div class="grid grid-cols-2 gap-3 hidden-view" id="servicesGrid">
                 <!-- Injected via JavaScript -->
             </div>
         </section>
 
         <!-- 2. DETAIL VIEW (SELECTED SERVICE PRICES) -->
-        <section id="detailView" class="view-section hidden-view space-y-4">
+        <section id="detailView" class="hidden-view space-y-4">
             <!-- Top Nav Back Button -->
-            <button onclick="navigateHome()" class="w-full py-3 px-4 rounded-2xl bg-slate-900 border-2 border-slate-700 text-white font-black text-sm flex items-center justify-between shadow-lg active:scale-98 transition">
+            <button onclick="navigateHome()" class="w-full py-3 px-4 rounded-2xl bg-slate-900 border-2 border-slate-700 text-white font-black text-sm flex items-center justify-between shadow-lg active:scale-95 transition-transform duration-200">
                 <div class="flex items-center gap-2">
                     <i class="fa-solid fa-arrow-right text-amber-400 text-lg"></i>
                     <span>الرجوع إلى القائمة الرئيسية</span>
@@ -168,14 +265,15 @@
                 priceColor: 'text-amber-400',
                 badgeColor: 'text-amber-300 bg-black/50 border-amber-400/30',
                 packages: [
-                    { amount: '60 شدة', price: '2,000 د.ع' },
-                    { amount: '180 شدة', price: '5,000 د.ع' },
-                    { amount: '385 شدة', price: '10,000 د.ع' },
-                    { amount: '660 شدة', price: '15,000 د.ع' },
-                    { amount: '720 شدة', price: '17,000 د.ع' },
-                    { amount: '1800 شدة', price: '35,000 د.ع' },
-                    { amount: '3850 شدة', price: '70,000 د.ع' },
-                    { amount: '8100 شدة', price: '135,000 د.ع' }
+                    { amount: '60 شدة', price: '2,500 د.ع' },
+                    { amount: '180 شدة', price: '7,000 د.ع' },
+                    { amount: '325 شدة', price: '10,000 د.ع' },
+                    { amount: '385 شدة', price: '12,000 د.ع' },
+                    { amount: '660 شدة', price: '17,000 د.ع' },
+                    { amount: '720 شدة', price: '19,000 د.ع' },
+                    { amount: '1800 شدة', price: '45,000 د.ع' },
+                    { amount: '3850 شدة', price: '85,000 د.ع' },
+                    { amount: '8100 شدة', price: '175,000 د.ع' }
                 ]
             },
             {
@@ -190,10 +288,10 @@
                 badgeColor: 'text-cyan-300 bg-black/50 border-cyan-400/30',
                 packages: [
                     { amount: '110 جوهرة', price: '2,500 د.ع' },
-                    { amount: '210 جوهرة', price: '4,000 د.ع' },
-                    { amount: '530 جوهرة', price: '8,000 د.ع' },
-                    { amount: '1080 جوهرة', price: '15,000 د.ع' },
-                    { amount: '2200 جوهرة', price: '29,000 د.ع' }
+                    { amount: '231 جوهرة', price: '5,000 د.ع' },
+                    { amount: '583 جوهرة', price: '10,000 د.ع' },
+                    { amount: '1188 جوهرة', price: '19,000 د.ع' },
+                    { amount: '2420 جوهرة', price: '39,000 د.ع' }
                 ]
             },
             {
@@ -245,22 +343,23 @@
                 priceColor: 'text-emerald-300',
                 badgeColor: 'text-emerald-300 bg-black/50 border-emerald-400/30',
                 packages: [
-                    { amount: '860 ألماس / 68,500 ذهب', price: '4,000 د.ع' },
-                    { amount: '2,320 ألماس / 223,700 ذهب', price: '8,000 د.ع' },
-                    { amount: '5,150 ألماس / 1,463,320 ذهب', price: '15,000 د.ع' },
-                    { amount: '13,580 ألماس / 3,666,470 ذهب', price: '36,000 د.ع' },
-                    { amount: '27,640 ألماس / 9,973,990 ذهب', price: '70,000 د.ع' },
-                    { amount: '55,800 ألماس / 25,236,460 ذهب', price: '138,000 د.ع' }
+                    { amount: '830 ألماس / 68,500 ذهب', price: '4,000 د.ع' },
+                    { amount: '2,320 ألماس / 223,700 ذهب', price: '9,000 د.ع' },
+                    { amount: '5,150 ألماس / 1,463,320 ذهب', price: '18,000 د.ع' },
+                    { amount: '13,580 ألماس / 3,666,470 ذهب', price: '45,000 د.ع' },
+                    { amount: '27,640 ألماس / 9,973,990 ذهب', price: '85,000 د.ع' },
+                    { amount: '55,800 ألماس / 25,236,460 ذهب', price: '175,000 د.ع' }
                 ]
             }
         ];
 
-        // Render Home Grid Cards
+        // 1. Render Home Grid Cards (مع تأثير الظهور المتدرج)
         function renderHomeGrid() {
             const grid = document.getElementById('servicesGrid');
-            grid.innerHTML = servicesData.map(service => `
+            grid.innerHTML = servicesData.map((service, index) => `
                 <button onclick="openDetail('${service.id}')" 
-                        class="bg-gradient-to-b ${service.cardBg} border-2 ${service.border} p-4 rounded-3xl flex flex-col items-center text-center justify-between space-y-3 shadow-xl hover:scale-105 active:scale-95 transition cursor-pointer overflow-hidden">
+                        style="animation-delay: ${index * 60}ms;"
+                        class="animate-item bg-gradient-to-b ${service.cardBg} border-2 ${service.border} p-4 rounded-3xl flex flex-col items-center text-center justify-between space-y-3 shadow-xl hover:scale-105 active:scale-95 transition-transform duration-200 cursor-pointer overflow-hidden">
                     <div class="w-16 h-16 rounded-2xl bg-black/50 border border-white/10 flex items-center justify-center text-3xl shadow-inner overflow-hidden p-0.5">
                         ${service.logo}
                     </div>
@@ -275,7 +374,7 @@
             `).join('');
         }
 
-        // Open Service Details View
+        // 2. Open Service Details View (مع الانزلاق)
         function openDetail(serviceId, pushHistory = true) {
             const service = servicesData.find(s => s.id === serviceId);
             if (!service) return;
@@ -296,10 +395,11 @@
                 <span class="px-3 py-1 rounded-xl text-xs font-black border ${service.badgeColor}">تسليم فوري</span>
             `;
 
-            // Render Package Rows
+            // Render Package Rows with Staggered Entrance Animation
             const packagesContainer = document.getElementById('detailPackages');
-            packagesContainer.innerHTML = service.packages.map(pkg => `
-                <div class="flex items-center justify-between gap-2 p-3.5 rounded-2xl bg-slate-900 border border-slate-800 shadow-sm">
+            packagesContainer.innerHTML = service.packages.map((pkg, idx) => `
+                <div style="animation-delay: ${idx * 45}ms;" 
+                     class="animate-item flex items-center justify-between gap-2 p-3.5 rounded-2xl bg-slate-900 border border-slate-800 shadow-sm">
                     <div class="flex-1 min-w-0">
                         <span class="text-sm sm:text-base font-black text-white block truncate">
                             ${pkg.amount}
@@ -312,9 +412,17 @@
                 </div>
             `).join('');
 
-            // Switch Views
-            document.getElementById('homeView').classList.add('hidden-view');
-            document.getElementById('detailView').classList.remove('hidden-view');
+            // Switch Views with Animations
+            const homeView = document.getElementById('homeView');
+            const detailView = document.getElementById('detailView');
+            
+            homeView.classList.add('hidden-view');
+            homeView.classList.remove('animate-home-enter');
+            
+            detailView.classList.remove('hidden-view');
+            detailView.classList.remove('animate-detail-enter');
+            void detailView.offsetWidth; // Force Reflow
+            detailView.classList.add('animate-detail-enter');
 
             if (pushHistory) {
                 history.pushState({ view: 'detail', id: serviceId }, '', `#${serviceId}`);
@@ -323,10 +431,21 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // Navigate Back to Home
+        // 3. Navigate Back to Home (مع الانزلاق العكسي)
         function navigateHome(pushHistory = true) {
-            document.getElementById('detailView').classList.add('hidden-view');
-            document.getElementById('homeView').classList.remove('hidden-view');
+            const homeView = document.getElementById('homeView');
+            const detailView = document.getElementById('detailView');
+
+            detailView.classList.add('hidden-view');
+            detailView.classList.remove('animate-detail-enter');
+
+            homeView.classList.remove('hidden-view');
+            homeView.classList.remove('animate-home-enter');
+            void homeView.offsetWidth; // Force Reflow
+            homeView.classList.add('animate-home-enter');
+
+            // إعطاء تأثير الظهور المتدرج مجدداً للبطاقات
+            renderHomeGrid();
 
             if (pushHistory) {
                 history.pushState({ view: 'home' }, '', window.location.pathname);
@@ -344,16 +463,28 @@
             }
         };
 
-        // Initialize App
+        // Initialize App & Handle Loading Skeleton
         window.onload = function() {
-            renderHomeGrid();
-            
-            // Check deep link hash
             const hash = window.location.hash.replace('#', '');
+            
+            // إذا كان الزبون فاتح رابط لعبة مباشرة، لا تظهر التحميل وادخل للعبة مباشرة
             if (hash && servicesData.some(s => s.id === hash)) {
+                document.getElementById('skeletonGrid').classList.add('hidden-view');
+                document.getElementById('servicesGrid').classList.remove('hidden-view');
+                renderHomeGrid();
                 openDetail(hash, false);
+                return;
             }
+
+            // إظهار شاشة التحميل (Skeleton) للحظات (نصف ثانية) كشكل جمالي
+            setTimeout(() => {
+                document.getElementById('skeletonGrid').classList.add('hidden-view');
+                const servicesGrid = document.getElementById('servicesGrid');
+                servicesGrid.classList.remove('hidden-view');
+                renderHomeGrid();
+            }, 600); // مدة التحميل الوهمي 600 جزء من الثانية
         };
     </script>
 </body>
 </html>
+```
