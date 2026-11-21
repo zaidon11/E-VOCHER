@@ -2,7 +2,7 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>مركز الراشد للشحن الإلكتروني</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -28,54 +28,27 @@
             color: #ffffff;
             user-select: none;
             -webkit-user-select: none;
-            overflow-x: hidden; /* لمنع ظهور شريط التمرير الأفقي أثناء الأنيميشن */
+            /* تم إزالة overflow-x: hidden من هنا حتى يشتغل الـ sticky */
         }
 
-        /* --- Animations (التأثيرات الحركية) --- */
-        
-        /* 1. حركة ظهور البطاقات المتدرجة للأسفل وللأعلى */
+        /* --- Animations --- */
         @keyframes fadeUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px) scale(0.95);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-            }
+            from { opacity: 0; transform: translateY(20px) scale(0.95); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
         }
-
-        /* 2. حركة الانزلاق عند الدخول لتفاصيل اللعبة */
         @keyframes slideInDetail {
-            from {
-                opacity: 0;
-                transform: translateX(-30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
+            from { opacity: 0; transform: translateX(-30px); }
+            to { opacity: 1; transform: translateX(0); }
         }
-
-        /* 3. حركة الانزلاق عند الرجوع للصفحة الرئيسية */
         @keyframes slideBackHome {
-            from {
-                opacity: 0;
-                transform: translateX(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
+            from { opacity: 0; transform: translateX(30px); }
+            to { opacity: 1; transform: translateX(0); }
         }
-
-        /* 4. تأثير التحميل (النبض الضوئي) */
         @keyframes shimmer {
             0% { background-position: -200% 0; }
             100% { background-position: 200% 0; }
         }
 
-        /* Classes to apply animations */
         .animate-item {
             opacity: 0;
             animation: fadeUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
@@ -87,7 +60,6 @@
             animation: slideBackHome 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
 
-        /* Skeleton Loading Effect */
         .skeleton-box {
             background: linear-gradient(90deg, #0f172a 25%, #1e293b 50%, #0f172a 75%);
             background-size: 200% 100%;
@@ -99,101 +71,94 @@
         }
     </style>
 </head>
-<body class="min-h-screen flex flex-col justify-between p-3 sm:p-6 bg-slate-950">
+<body class="min-h-screen flex flex-col bg-slate-950">
 
-    <!-- Header -->
-    <header class="w-full max-w-md mx-auto text-center py-2 sticky top-0 z-40 bg-slate-950/90 backdrop-blur-md border-b border-slate-900">
-        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-400 font-bold text-xs mb-1">
-            <i class="fa-solid fa-bolt animate-pulse"></i>
-            <span>مركز الراشد لشحن الخدمات والألعاب</span>
-        </div>
-        <h1 class="text-2xl font-black text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-sky-300 to-pink-400">
-            مركز الراشد الإلكتروني
-        </h1>
-    </header>
-
-    <!-- Main Dynamic Content Container -->
-    <main class="w-full max-w-md mx-auto my-auto py-3">
-
-        <!-- 1. HOME VIEW (GRID OF GAMES & SERVICES) -->
-        <section id="homeView" class="space-y-4">
-            <div class="text-center space-y-1 mb-3">
-                <p class="text-sm font-extrabold text-slate-300">اختر الخدمة أو اللعبة للاطلاع على الأسعار</p>
+    <!-- Sticky Header Area (يحتوي على الهيدر وزر الرجوع معاً) -->
+    <div class="sticky top-0 z-40 bg-slate-950/95 backdrop-blur-md border-b border-slate-900 pb-2 w-full shadow-lg">
+        <header class="w-full max-w-md mx-auto text-center py-2 px-3">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-400 font-bold text-xs mb-1">
+                <i class="fa-solid fa-bolt animate-pulse"></i>
+                <span>مركز الراشد لشحن الخدمات والألعاب</span>
             </div>
+            <h1 class="text-2xl font-black text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-sky-300 to-pink-400">
+                مركز الراشد الإلكتروني
+            </h1>
+        </header>
 
-            <!-- Skeleton Loader Grid (يظهر أول ما يفتح الموقع) -->
-            <div id="skeletonGrid" class="grid grid-cols-2 gap-3">
-                <!-- 6 هيكل تحميل وهمي -->
-                <div class="skeleton-box h-40 rounded-3xl border border-slate-800/80 p-4 flex flex-col items-center justify-between shadow-xl">
-                    <div class="w-16 h-16 rounded-2xl bg-slate-800/50"></div>
-                    <div class="w-20 h-4 rounded-lg bg-slate-800/50"></div>
-                    <div class="w-full h-8 rounded-xl bg-slate-800/50"></div>
-                </div>
-                <div class="skeleton-box h-40 rounded-3xl border border-slate-800/80 p-4 flex flex-col items-center justify-between shadow-xl">
-                    <div class="w-16 h-16 rounded-2xl bg-slate-800/50"></div>
-                    <div class="w-20 h-4 rounded-lg bg-slate-800/50"></div>
-                    <div class="w-full h-8 rounded-xl bg-slate-800/50"></div>
-                </div>
-                <div class="skeleton-box h-40 rounded-3xl border border-slate-800/80 p-4 flex flex-col items-center justify-between shadow-xl">
-                    <div class="w-16 h-16 rounded-2xl bg-slate-800/50"></div>
-                    <div class="w-20 h-4 rounded-lg bg-slate-800/50"></div>
-                    <div class="w-full h-8 rounded-xl bg-slate-800/50"></div>
-                </div>
-                <div class="skeleton-box h-40 rounded-3xl border border-slate-800/80 p-4 flex flex-col items-center justify-between shadow-xl">
-                    <div class="w-16 h-16 rounded-2xl bg-slate-800/50"></div>
-                    <div class="w-20 h-4 rounded-lg bg-slate-800/50"></div>
-                    <div class="w-full h-8 rounded-xl bg-slate-800/50"></div>
-                </div>
-                <div class="skeleton-box h-40 rounded-3xl border border-slate-800/80 p-4 flex flex-col items-center justify-between shadow-xl">
-                    <div class="w-16 h-16 rounded-2xl bg-slate-800/50"></div>
-                    <div class="w-20 h-4 rounded-lg bg-slate-800/50"></div>
-                    <div class="w-full h-8 rounded-xl bg-slate-800/50"></div>
-                </div>
-                <div class="skeleton-box h-40 rounded-3xl border border-slate-800/80 p-4 flex flex-col items-center justify-between shadow-xl">
-                    <div class="w-16 h-16 rounded-2xl bg-slate-800/50"></div>
-                    <div class="w-20 h-4 rounded-lg bg-slate-800/50"></div>
-                    <div class="w-full h-8 rounded-xl bg-slate-800/50"></div>
-                </div>
-            </div>
-
-            <!-- Actual Services Grid (يظهر بعد التحميل) -->
-            <div class="grid grid-cols-2 gap-3 hidden-view" id="servicesGrid">
-                <!-- Injected via JavaScript -->
-            </div>
-        </section>
-
-        <!-- 2. DETAIL VIEW (SELECTED SERVICE PRICES) -->
-        <section id="detailView" class="hidden-view space-y-4">
-            <!-- Top Nav Back Button -->
-            <button onclick="navigateHome()" class="w-full py-3 px-4 rounded-2xl bg-slate-900 border-2 border-slate-700 text-white font-black text-sm flex items-center justify-between shadow-lg active:scale-95 transition-transform duration-200">
+        <!-- زر الرجوع الثابت (يظهر فقط داخل تفاصيل اللعبة) -->
+        <div id="stickyBackButtonContainer" class="hidden-view w-full max-w-md mx-auto px-3 mt-1">
+            <button onclick="navigateHome()" class="w-full py-2.5 px-4 rounded-xl bg-slate-900 border-2 border-slate-700 text-white font-black text-sm flex items-center justify-between shadow-lg active:scale-95 transition-transform duration-200">
                 <div class="flex items-center gap-2">
                     <i class="fa-solid fa-arrow-right text-amber-400 text-lg"></i>
                     <span>الرجوع إلى القائمة الرئيسية</span>
                 </div>
-                <span class="text-xs text-slate-400">تغيير اللعبة</span>
             </button>
+        </div>
+    </div>
 
-            <!-- Service Header Card -->
-            <div id="detailHeader" class="p-4 rounded-3xl border-2 flex items-center justify-between shadow-xl">
-                <!-- Injected via JS -->
-            </div>
+    <!-- Main Content Wrapper (يمنع حركة الشاشة يمين ويسار) -->
+    <div class="overflow-x-hidden w-full flex-1 flex flex-col">
+        <main class="w-full max-w-md mx-auto flex-1 py-3 px-3 sm:px-6">
 
-            <!-- Package Rows Container -->
-            <div id="detailPackages" class="space-y-2.5">
-                <!-- Injected via JS -->
-            </div>
-        </section>
+            <!-- 1. HOME VIEW -->
+            <section id="homeView" class="space-y-4">
+                <div class="text-center space-y-1 mb-3">
+                    <p class="text-sm font-extrabold text-slate-300">اختر الخدمة أو اللعبة للاطلاع على الأسعار</p>
+                </div>
 
-    </main>
+                <!-- Skeleton Loader Grid -->
+                <div id="skeletonGrid" class="grid grid-cols-2 gap-3">
+                    <div class="skeleton-box h-40 rounded-3xl border border-slate-800/80 p-4 flex flex-col items-center justify-between shadow-xl">
+                        <div class="w-16 h-16 rounded-2xl bg-slate-800/50"></div>
+                        <div class="w-20 h-4 rounded-lg bg-slate-800/50"></div>
+                        <div class="w-full h-8 rounded-xl bg-slate-800/50"></div>
+                    </div>
+                    <div class="skeleton-box h-40 rounded-3xl border border-slate-800/80 p-4 flex flex-col items-center justify-between shadow-xl">
+                        <div class="w-16 h-16 rounded-2xl bg-slate-800/50"></div>
+                        <div class="w-20 h-4 rounded-lg bg-slate-800/50"></div>
+                        <div class="w-full h-8 rounded-xl bg-slate-800/50"></div>
+                    </div>
+                    <div class="skeleton-box h-40 rounded-3xl border border-slate-800/80 p-4 flex flex-col items-center justify-between shadow-xl">
+                        <div class="w-16 h-16 rounded-2xl bg-slate-800/50"></div>
+                        <div class="w-20 h-4 rounded-lg bg-slate-800/50"></div>
+                        <div class="w-full h-8 rounded-xl bg-slate-800/50"></div>
+                    </div>
+                    <div class="skeleton-box h-40 rounded-3xl border border-slate-800/80 p-4 flex flex-col items-center justify-between shadow-xl">
+                        <div class="w-16 h-16 rounded-2xl bg-slate-800/50"></div>
+                        <div class="w-20 h-4 rounded-lg bg-slate-800/50"></div>
+                        <div class="w-full h-8 rounded-xl bg-slate-800/50"></div>
+                    </div>
+                </div>
+
+                <!-- Actual Services Grid -->
+                <div class="grid grid-cols-2 gap-3 hidden-view" id="servicesGrid">
+                    <!-- Injected via JavaScript -->
+                </div>
+            </section>
+
+            <!-- 2. DETAIL VIEW -->
+            <section id="detailView" class="hidden-view space-y-4 pt-1">
+                <!-- Service Header Card -->
+                <div id="detailHeader" class="p-4 rounded-3xl border-2 flex items-center justify-between shadow-xl">
+                    <!-- Injected via JS -->
+                </div>
+
+                <!-- Package Rows Container -->
+                <div id="detailPackages" class="space-y-2.5 pb-6">
+                    <!-- Injected via JS -->
+                </div>
+            </section>
+
+        </main>
+    </div>
 
     <!-- Footer -->
-    <footer class="w-full max-w-md mx-auto text-center py-3 text-xs text-slate-500 font-bold border-t border-slate-900 mt-2">
+    <footer class="w-full text-center py-3 text-xs text-slate-500 font-bold border-t border-slate-900 bg-slate-950 mt-auto">
         أبلغ الموظف بالباقة المطلوبة للشحن مباشرة
     </footer>
 
     <!-- Logic Script -->
     <script>
-        // Custom Logos using Provided Direct Links
         const logos = {
             apple: `<i class="fa-brands fa-apple text-3xl text-white"></i>`,
             roblox: `<img src="https://i.ibb.co/4Rfj8yDB/roblox.jpg" alt="Roblox" class="w-full h-full object-cover rounded-xl">`,
@@ -314,7 +279,6 @@
                     { amount: '10000 كوينز', extra: '8078 + 1922 مجانية', price: '155,000 د.ع' },
                     { amount: '15000 كوينز', extra: '11955 + 3045 مجانية', price: '200,000 د.ع' }
                 ]
-            
             },
             {
                 id: 'tiktok',
@@ -357,13 +321,12 @@
             }
         ];
 
-        // 1. Render Home Grid Cards (مع تأثير الظهور المتدرج)
         function renderHomeGrid() {
             const grid = document.getElementById('servicesGrid');
             grid.innerHTML = servicesData.map((service, index) => `
                 <button onclick="openDetail('${service.id}')" 
                         style="animation-delay: ${index * 60}ms;"
-                        class="animate-item bg-gradient-to-b ${service.cardBg} border-2 ${service.border} p-4 rounded-3xl flex flex-col items-center text-center justify-between space-y-3 shadow-xl hover:scale-105 active:scale-95 transition-transform duration-200 cursor-pointer overflow-hidden">
+                        class="animate-item bg-gradient-to-b ${service.cardBg} border-2 ${service.border} p-4 rounded-3xl flex flex-col items-center text-center justify-between space-y-3 shadow-xl active:scale-95 transition-transform duration-200 cursor-pointer overflow-hidden">
                     <div class="w-16 h-16 rounded-2xl bg-black/50 border border-white/10 flex items-center justify-center text-3xl shadow-inner overflow-hidden p-0.5">
                         ${service.logo}
                     </div>
@@ -378,12 +341,13 @@
             `).join('');
         }
 
-        // 2. Open Service Details View (مع الانزلاق)
         function openDetail(serviceId, pushHistory = true) {
             const service = servicesData.find(s => s.id === serviceId);
             if (!service) return;
 
-            // Render Header
+            // إظهار زر الرجوع الثابت
+            document.getElementById('stickyBackButtonContainer').classList.remove('hidden-view');
+
             const header = document.getElementById('detailHeader');
             header.className = `p-4 rounded-3xl border-2 bg-gradient-to-r ${service.headerBg} flex items-center justify-between shadow-xl`;
             header.innerHTML = `
@@ -399,7 +363,6 @@
                 <span class="px-3 py-1 rounded-xl text-xs font-black border ${service.badgeColor}">تسليم فوري</span>
             `;
 
-            // Render Package Rows with Staggered Entrance Animation
             const packagesContainer = document.getElementById('detailPackages');
             packagesContainer.innerHTML = service.packages.map((pkg, idx) => `
                 <div style="animation-delay: ${idx * 45}ms;" 
@@ -416,7 +379,6 @@
                 </div>
             `).join('');
 
-            // Switch Views with Animations
             const homeView = document.getElementById('homeView');
             const detailView = document.getElementById('detailView');
             
@@ -425,7 +387,7 @@
             
             detailView.classList.remove('hidden-view');
             detailView.classList.remove('animate-detail-enter');
-            void detailView.offsetWidth; // Force Reflow
+            void detailView.offsetWidth; 
             detailView.classList.add('animate-detail-enter');
 
             if (pushHistory) {
@@ -435,20 +397,21 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // 3. Navigate Back to Home (مع الانزلاق العكسي)
         function navigateHome(pushHistory = true) {
             const homeView = document.getElementById('homeView');
             const detailView = document.getElementById('detailView');
+
+            // إخفاء زر الرجوع الثابت
+            document.getElementById('stickyBackButtonContainer').classList.add('hidden-view');
 
             detailView.classList.add('hidden-view');
             detailView.classList.remove('animate-detail-enter');
 
             homeView.classList.remove('hidden-view');
             homeView.classList.remove('animate-home-enter');
-            void homeView.offsetWidth; // Force Reflow
+            void homeView.offsetWidth; 
             homeView.classList.add('animate-home-enter');
 
-            // إعطاء تأثير الظهور المتدرج مجدداً للبطاقات
             renderHomeGrid();
 
             if (pushHistory) {
@@ -458,7 +421,6 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // Handle Hardware/Browser Back Button
         window.onpopstate = function(event) {
             if (event.state && event.state.view === 'detail') {
                 openDetail(event.state.id, false);
@@ -467,12 +429,16 @@
             }
         };
 
-        // Initialize App & Handle Loading Skeleton
         window.onload = function() {
             const hash = window.location.hash.replace('#', '');
             
-            // إذا كان الزبون فاتح رابط لعبة مباشرة، لا تظهر التحميل وادخل للعبة مباشرة
+            // تسجيل الصفحة الرئيسية كأول صفحة بالـ History (حل مشكلة زر الرجوع بالجهاز للروابط المباشرة)
+            history.replaceState({ view: 'home' }, '', window.location.pathname);
+
             if (hash && servicesData.some(s => s.id === hash)) {
+                // تسجيل صفحة اللعبة كصفحة ثانية بعد الرئيسية
+                history.pushState({ view: 'detail', id: hash }, '', '#' + hash);
+
                 document.getElementById('skeletonGrid').classList.add('hidden-view');
                 document.getElementById('servicesGrid').classList.remove('hidden-view');
                 renderHomeGrid();
@@ -480,13 +446,12 @@
                 return;
             }
 
-            // إظهار شاشة التحميل (Skeleton) للحظات (نصف ثانية) كشكل جمالي
             setTimeout(() => {
                 document.getElementById('skeletonGrid').classList.add('hidden-view');
                 const servicesGrid = document.getElementById('servicesGrid');
                 servicesGrid.classList.remove('hidden-view');
                 renderHomeGrid();
-            }, 600); // مدة التحميل الوهمي 600 جزء من الثانية
+            }, 600);
         };
     </script>
 </body>
